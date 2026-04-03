@@ -73,7 +73,7 @@ FPGAs provide deterministic parallel processing with sub-microsecond latency —
 
 ## ⚙️ Implementation
 
-### FSM-Based Charge Controller
+### 1. FSM-Based Charge Controller
 An 11-state Finite State Machine (FSM) was designed in Verilog HDL to manage the complete charging lifecycle:
 
 | State | Function |
@@ -90,7 +90,7 @@ An 11-state Finite State Machine (FSM) was designed in Verilog HDL to manage the
 | FAULT_DETECTION | Overcurrent / overvoltage / thermal fault handling |
 | CHARGE_COMPLETE | Termination and disconnection sequence |
 
-### MPPT Algorithm — Perturb and Observe (P&O)
+### 2. MPPT Algorithm — Perturb and Observe (P&O)
 The Perturb & Observe MPPT algorithm was implemented to track the maximum power point of the PV array under variable irradiance conditions. The algorithm periodically perturbs the operating voltage and observes the resulting power change — adjusting the DC-DC converter duty cycle to maintain operation at the MPP.
 
 Functional simulation and waveform verification performed using ModelSim — validating correct state transitions across all operating scenarios including partial shading and rapid irradiance changes.
