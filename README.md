@@ -1,16 +1,15 @@
-# Book Chapter - FPGA Based Solar Powered EV Charging Station: Smart Infrastructure for a Sustainable Future
 
-> A book chapter presenting an FPGA-based solar powered electric vehicle charging station — covering FSM-based charge control, MPPT algorithm implementation, power routing logic, and environmental impact analysis — accepted for publication in CRC Press / Taylor & Francis Group.
+# Book Chapter — FPGA Based Solar Powered EV Charging Station: Smart Infrastructure for a Sustainable Future
+
+> An FPGA-based solar-powered EV charging infrastructure study covering FSM-based charge control, MPPT implementation, intelligent power management, and sustainable transportation.
 
 ![Status](https://img.shields.io/badge/Status-Accepted%20for%20Publication-brightgreen)
 ![Type](https://img.shields.io/badge/Type-Book%20Chapter-blue)
 ![Publisher](https://img.shields.io/badge/Publisher-CRC%20Press%20%2F%20Taylor%20%26%20Francis-orange)
 ![ISBN](https://img.shields.io/badge/ISBN-9781041093626-green)
-![Signed](https://img.shields.io/badge/Agreement%20Signed-February%202026-brightgreen)
-![Tool](https://img.shields.io/badge/Tool-Verilog%20HDL-purple)
-![Tool](https://img.shields.io/badge/Tool-ModelSim-blue)
-
-
+![Agreement](https://img.shields.io/badge/Agreement%20Signed-February%202026-brightgreen)
+![HDL](https://img.shields.io/badge/HDL-Verilog-purple)
+![Simulation](https://img.shields.io/badge/Simulation-ModelSim-blue)
 
 ## 📄 Publication Details
 
@@ -24,8 +23,6 @@
 | **Status** | Accepted — Awaiting Publication |
 | **Chapter Number** | Chapter 6 |
 
-
-
 ## 👥 Authors
 
 | Name | ORCID | Affiliation |
@@ -35,90 +32,93 @@
 | Pradeesh R | [0009-0007-7308-6764](https://orcid.org/0009-0007-7308-6764) | VIT Chennai |
 | Kartheesan K | [0009-0005-4219-7520](https://orcid.org/0009-0005-4219-7520) | VIT Chennai |
 
-*Research conducted under Dr. O.V. Gnana Swathika, Centre for Smart Grid Technologies (CSGT), VIT Chennai*
+*Research conducted under Dr. O.V. Gnana Swathika, Centre for Smart Grid Technologies (CSGT), VIT Chennai.*
 
+## 🔬 Relevance to Semiconductor Technology
 
+This work explores FPGA-based digital control for sustainable energy and EV charging infrastructure. It demonstrates the application of programmable logic, hardware description languages, finite state machines, and parallel control architectures in real-time power management systems.
+
+The project also provides experience in digital hardware design, functional simulation, and hardware-oriented algorithm implementation — complementing my broader interest in digital systems and semiconductor technology.
 
 ## 🔍 Overview
 
-The rapid growth of electric vehicle (EV) adoption is placing unprecedented demand on charging infrastructure — requiring solutions that are efficient, reliable, grid-friendly, and environmentally sustainable. Traditional EV charging systems using microcontroller or DSP-based control face limitations in real-time responsiveness, scalability, and energy management capability.
+The growing adoption of electric vehicles is increasing the demand for charging infrastructure that is efficient, reliable, and environmentally sustainable. Integrating photovoltaic energy generation with intelligent charging control offers a way to improve energy utilization and reduce dependence on conventional grid power.
 
-This chapter presents a comprehensive study of **FPGA-based Solar Powered EV Charging Stations** — exploring how Field Programmable Gate Arrays, combined with photovoltaic energy generation, can deliver intelligent, deterministic, and reconfigurable control for next-generation sustainable charging infrastructure.
-
-
+This chapter presents an **FPGA-based Solar Powered EV Charging Station**, exploring the use of programmable hardware for charging control, Maximum Power Point Tracking (MPPT), and intelligent power management.
 
 ## 🧠 Problem Addressed
 
-Conventional EV charging infrastructure exhibits three critical limitations:
+Conventional EV charging infrastructure faces several challenges:
 
-**1. Grid Overloading During Peak Demand:** Unmanaged charging creates synchronised demand spikes that strain grid infrastructure — particularly as EV penetration increases. Intelligent load scheduling and real-time demand response are essential to prevent localised grid failures.
+- **Grid Demand Management:** Uncoordinated charging can increase peak electricity demand and place additional stress on distribution networks.
+- **Solar Energy Utilization:** Variations in solar irradiance and temperature require adaptive MPPT control to improve photovoltaic energy harvesting.
+- **Battery Charging Management:** Charging systems require coordinated control and monitoring to support safe and efficient charging operation.
 
-**2. Inefficient Solar Integration:** Integrating PV generation with EV charging requires Maximum Power Point Tracking (MPPT) algorithms that can respond dynamically to irradiance and temperature variations. Microcontroller-based MPPT systems are too slow for rapid irradiance transients — losing recoverable solar energy.
+The proposed approach investigates FPGA-based control to address these challenges through deterministic digital logic and coordinated system operation.
 
-**3. Battery Health and Charging Efficiency:** Fixed charging profiles accelerate battery degradation. Temperature-aware adaptive charging algorithms — requiring sub-millisecond control loops — are needed to prolong battery life while maintaining fast charging capability.
+## 💡 FPGA-Based Control Architecture
 
+The chapter explores the use of FPGA technology for real-time EV charging management through:
 
-
-## 💡 FPGA Advantages for EV Charging Control
-
-FPGAs provide deterministic parallel processing with sub-microsecond latency — enabling capabilities that software-based controllers cannot match:
-
-- **Real-time MPPT** — FPGA-implemented Perturb & Observe algorithm adjusts converter duty cycles faster than irradiance transients, maximising PV energy harvest
-- **Adaptive Load Scheduling** — FPGA schedulers reduce peak demand by 15% while maintaining power factor >0.95
-- **8× faster decisions** than PLC-based systems
-- **Temperature-aware charging** — Reflex charge control suppresses battery temperature rise by 2–3°C, directly extending battery cycle life
-- **Hardware-level cybersecurity** — FPGA-based encryption secures communication without latency penalties
-
-
+- **FSM-Based Charge Control** — Managing charging states and operating sequences.
+- **Perturb and Observe MPPT** — Tracking the photovoltaic array's maximum power point under changing operating conditions.
+- **Power Management** — Coordinating solar power availability and charging operation.
+- **Temperature Monitoring** — Supporting temperature-aware charging control.
+- **Programmable Hardware** — Enabling deterministic and reconfigurable digital control.
 
 ## ⚙️ Implementation
 
 ### 1. FSM-Based Charge Controller
-An 11-state Finite State Machine (FSM) was designed in Verilog HDL to manage the complete charging lifecycle:
+
+An 11-state Finite State Machine (FSM) was developed using Verilog HDL to coordinate the charging lifecycle.
 
 | State | Function |
 |:---|:---|
 | IDLE | Awaiting vehicle connection |
-| VEHICLE_DETECTED | EV presence confirmed, initiating communication |
+| VEHICLE_DETECTED | Detecting vehicle connection |
 | AUTHENTICATION | Verifying charging authorization |
-| SOLAR_CHECK | Evaluating available PV power |
-| MPPT_ACTIVE | Maximum Power Point Tracking active |
-| PRE_CHARGE | Low-current pre-conditioning phase |
-| FAST_CHARGE | High-current constant current phase |
-| TAPER_CHARGE | Constant voltage tapering phase |
-| TEMPERATURE_CHECK | Thermal monitoring and throttling |
-| FAULT_DETECTION | Overcurrent / overvoltage / thermal fault handling |
-| CHARGE_COMPLETE | Termination and disconnection sequence |
+| SOLAR_CHECK | Evaluating available photovoltaic power |
+| MPPT_ACTIVE | Executing maximum power point tracking |
+| PRE_CHARGE | Managing the initial charging phase |
+| FAST_CHARGE | Controlling the main charging phase |
+| TAPER_CHARGE | Managing the final charging phase |
+| TEMPERATURE_CHECK | Monitoring thermal conditions |
+| FAULT_DETECTION | Handling abnormal operating conditions |
+| CHARGE_COMPLETE | Managing charging termination |
 
-### 2. MPPT Algorithm — Perturb and Observe (P&O)
-The Perturb & Observe MPPT algorithm was implemented to track the maximum power point of the PV array under variable irradiance conditions. The algorithm periodically perturbs the operating voltage and observes the resulting power change — adjusting the DC-DC converter duty cycle to maintain operation at the MPP.
+### 2. MPPT Algorithm — Perturb and Observe
 
-Functional simulation and waveform verification performed using ModelSim — validating correct state transitions across all operating scenarios including partial shading and rapid irradiance changes.
+The Perturb and Observe (P&O) algorithm was implemented to track the maximum power point of the photovoltaic array.
 
+The algorithm periodically adjusts the operating voltage and evaluates the resulting power variation. Based on this change, the controller updates the DC-DC converter duty cycle to move the PV system towards its maximum power operating point.
 
+### 3. Functional Simulation
+
+Verilog-based functional simulation was performed using ModelSim to verify controller operation, FSM state transitions, and MPPT-related behaviour under different operating conditions.
 
 ## 📊 Key Results
 
-| Metric | Value |
+The chapter discusses the following system-level outcomes:
+
+| Metric | Reported Value |
 |:---|:---|
-| **Peak demand reduction** | 15% with FPGA scheduler |
-| **Power factor maintained** | > 0.95 |
-| **Decision speed vs PLC** | 8× faster |
-| **Battery temperature suppression** | 2–3°C reduction (reflex charging) |
-| **CO₂ reduction vs gasoline** | Up to 99.8% |
-| **SO₂ reduction vs gasoline** | Up to 99.7% |
-| **NOx reduction vs gasoline** | 100% |
+| **Peak Demand Reduction** | 15% |
+| **Power Factor** | > 0.95 |
+| **Decision Speed vs. PLC** | 8× faster |
+| **Battery Temperature Suppression** | 2–3°C reduction |
+| **CO₂ Reduction vs. Gasoline** | Up to 99.8% |
+| **SO₂ Reduction vs. Gasoline** | Up to 99.7% |
+| **NOx Reduction vs. Gasoline** | 100% |
 
-
+*Reported values are based on the study presented in the book chapter.*
 
 ## 🎯 Applications
 
-- **Commercial EV Charging Stations** — Grid-connected solar FPGA charging hubs
-- **Residential Solar EV Integration** — Home PV + EV charging with smart load management
-- **Fleet Charging Infrastructure** — Large-scale coordinated charging for commercial EV fleets
-- **Off-Grid Rural Charging** — Standalone solar FPGA chargers for remote areas
-- **Smart Grid Integration** — Vehicle-to-Grid (V2G) capable charging with FPGA control
-
+- **Commercial EV Charging Stations** — Solar-powered charging infrastructure with intelligent control.
+- **Residential Solar EV Integration** — Coordinated photovoltaic generation and home EV charging.
+- **Fleet Charging Infrastructure** — Managed charging for commercial electric vehicle fleets.
+- **Off-Grid Charging** — Solar-powered charging solutions for remote locations.
+- **Smart Grid Integration** — Intelligent charging management and potential Vehicle-to-Grid (V2G) applications.
 
 ## 🔗 Related Work
 
@@ -129,15 +129,13 @@ Functional simulation and waveform verification performed using ModelSim — val
 | **Research Centre** | Centre for Smart Grid Technologies (CSGT), VIT Chennai |
 | **Internship** | Summer Research Intern, CSGT, VIT Chennai (May–July 2025) |
 
-
-
 ## 🤝 Connect
 
 | **Author** | Preetham SK |
 |:---|:---|
 | **ORCID** | [0009-0003-0730-5384](https://orcid.org/0009-0003-0730-5384) |
-| **Programme** | B.Tech. Electrical and Electronics Engineering, VIT Chennai |
+| **Programme** | M.Sc. Nanoelectronic Systems, TU Dresden · B.Tech. EEE, VIT Chennai |
 | **LinkedIn** | [linkedin.com/in/preethamsk16](https://www.linkedin.com/in/preethamsk16) |
 | **GitHub** | [github.com/PreethamSK163](https://github.com/PreethamSK163) |
 | **Portfolio** | [preethamsk163.github.io](https://preethamsk163.github.io) |
-| **Email** | preethamsk163@gmail.com |
+| **Email** | skpreetham16@gmail.com |
