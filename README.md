@@ -1,7 +1,7 @@
 
 # Book Chapter — FPGA Based Solar Powered EV Charging Station: Smart Infrastructure for a Sustainable Future
 
-> An FPGA-based solar-powered EV charging infrastructure study covering FSM-based charge control, MPPT implementation, intelligent power management, and sustainable transportation.
+> An FPGA-based solar-powered EV charging infrastructure study exploring Verilog-based digital control, FSM architecture, MPPT implementation, intelligent power management and programmable hardware for sustainable transportation.
 
 ![Status](https://img.shields.io/badge/Status-Accepted%20for%20Publication-brightgreen)
 ![Type](https://img.shields.io/badge/Type-Book%20Chapter-blue)
@@ -34,25 +34,54 @@
 
 *Research conducted under Dr. O.V. Gnana Swathika, Centre for Smart Grid Technologies (CSGT), VIT Chennai.*
 
-## 🔬 Relevance to Semiconductor Technology
+## 🔬 Relevance to Semiconductor Technology & Digital Hardware
 
-This work explores FPGA-based digital control for sustainable energy and EV charging infrastructure. It demonstrates the application of programmable logic, hardware description languages, finite state machines, and parallel control architectures in real-time power management systems.
+This work demonstrates the application of programmable digital hardware to real-time energy management, providing practical experience in hardware description languages, digital architecture, control logic and functional verification.
 
-The project also provides experience in digital hardware design, functional simulation, and hardware-oriented algorithm implementation — complementing my broader interest in digital systems and semiconductor technology.
+Although FPGA implementation differs from standard-cell ASIC implementation, the underlying digital design concepts are relevant to semiconductor engineering and integrated-circuit development.
+
+### 1. FPGA-Based Digital Hardware Architecture
+
+- Developed an 11-state Finite State Machine using Verilog HDL for EV charging control.
+- Structured the charging controller into dedicated digital control operations.
+- Applied programmable logic to implement coordinated and deterministic system behaviour.
+
+### 2. Hardware Description Language and RTL Design
+
+- Used Verilog HDL to describe the charging controller and its operating logic.
+- Developed sequential control logic and state-transition behaviour.
+- Gained practical experience translating system-level requirements into synthesizable digital hardware descriptions.
+
+### 3. Digital Control and Hardware-Oriented Algorithm Implementation
+
+- Implemented Perturb and Observe (P&O) MPPT logic for photovoltaic power optimisation.
+- Integrated control decisions with converter duty-cycle adjustment.
+- Explored the implementation of algorithmic operations using digital hardware rather than relying exclusively on software execution.
+
+### 4. Functional Verification
+
+- Used ModelSim for Verilog-based functional simulation.
+- Verified FSM state transitions and controller behaviour under different operating conditions.
+- Evaluated the interaction between control logic and MPPT operations.
+
+This project complements my ASIC-oriented VLSI experience by adding exposure to programmable hardware, digital control architecture and RTL verification, providing a broader foundation in digital semiconductor systems.
 
 ## 🔍 Overview
 
-The growing adoption of electric vehicles is increasing the demand for charging infrastructure that is efficient, reliable, and environmentally sustainable. Integrating photovoltaic energy generation with intelligent charging control offers a way to improve energy utilization and reduce dependence on conventional grid power.
+The growing adoption of electric vehicles is increasing the demand for charging infrastructure that is efficient, reliable and environmentally sustainable. Integrating photovoltaic energy generation with intelligent charging control offers a way to improve energy utilisation and reduce dependence on conventional grid power.
 
-This chapter presents an **FPGA-based Solar Powered EV Charging Station**, exploring the use of programmable hardware for charging control, Maximum Power Point Tracking (MPPT), and intelligent power management.
+This chapter presents an **FPGA-Based Solar Powered EV Charging Station**, exploring the use of programmable hardware for charging control, Maximum Power Point Tracking (MPPT) and intelligent power management.
+
+The work combines digital control architecture, Verilog-based implementation and functional simulation to investigate an intelligent charging infrastructure.
 
 ## 🧠 Problem Addressed
 
 Conventional EV charging infrastructure faces several challenges:
 
 - **Grid Demand Management:** Uncoordinated charging can increase peak electricity demand and place additional stress on distribution networks.
-- **Solar Energy Utilization:** Variations in solar irradiance and temperature require adaptive MPPT control to improve photovoltaic energy harvesting.
+- **Solar Energy Utilisation:** Variations in solar irradiance and temperature require adaptive MPPT control to improve photovoltaic energy harvesting.
 - **Battery Charging Management:** Charging systems require coordinated control and monitoring to support safe and efficient charging operation.
+- **Real-Time Control:** Charging infrastructure requires reliable digital control to coordinate different operating states and respond to changing system conditions.
 
 The proposed approach investigates FPGA-based control to address these challenges through deterministic digital logic and coordinated system operation.
 
@@ -66,7 +95,7 @@ The chapter explores the use of FPGA technology for real-time EV charging manage
 - **Temperature Monitoring** — Supporting temperature-aware charging control.
 - **Programmable Hardware** — Enabling deterministic and reconfigurable digital control.
 
-## ⚙️ Implementation
+## ⚙️ Hardware Design & Implementation
 
 ### 1. FSM-Based Charge Controller
 
@@ -92,9 +121,16 @@ The Perturb and Observe (P&O) algorithm was implemented to track the maximum pow
 
 The algorithm periodically adjusts the operating voltage and evaluates the resulting power variation. Based on this change, the controller updates the DC-DC converter duty cycle to move the PV system towards its maximum power operating point.
 
-### 3. Functional Simulation
+This provides practical exposure to translating an energy-management algorithm into digital control logic.
 
-Verilog-based functional simulation was performed using ModelSim to verify controller operation, FSM state transitions, and MPPT-related behaviour under different operating conditions.
+### 3. Functional Simulation and Verification
+
+Verilog-based functional simulation was performed using ModelSim to verify:
+
+- FSM state transitions and charging sequences.
+- Controller behaviour under different operating conditions.
+- MPPT-related control behaviour.
+- Functional coordination between the digital control blocks.
 
 ## 📊 Key Results
 
@@ -131,8 +167,9 @@ The chapter discusses the following system-level outcomes:
 
 ## 🤝 Connect
 
-| **Author** | Preetham SK |
+| Platform | Link |
 |:---|:---|
+| **Author** | Preetham Senthil Kumar Kalpana (Preetham SK) |
 | **ORCID** | [0009-0003-0730-5384](https://orcid.org/0009-0003-0730-5384) |
 | **Programme** | M.Sc. Nanoelectronic Systems, TU Dresden · B.Tech. EEE, VIT Chennai |
 | **LinkedIn** | [linkedin.com/in/preethamsk16](https://www.linkedin.com/in/preethamsk16) |
